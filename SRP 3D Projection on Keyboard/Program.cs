@@ -33,36 +33,27 @@ namespace SRP_3D_Projection_on_Keyboard {
 
                 keyboard.Brush = (SolidColorBrush)Color.Transparent;
                 while (true) {
-                    //foreach (var key in keyboard)
-                    //{
-                    //    key.Color = Color.Red;
-                    //    //if (key.ToString().ElementAt<char>(0) == 'G') {
-                    //        Console.Write(key.ToString() + "\n");
-                    //    //}
-                    //    keyboard.Update();
-                    //    Thread.Sleep(500);
-                    //}
-
-                    //LEDClear(keyboard);
-                    //for (int y = 0; y < 6; y++) {
-                    //    for (int x = 0; x < 23; x++) {
-                    //        LEDClear(keyboard);
-                    //        Draw.LEDDrawAt(keyboard, Color.Red, x, y);
-                    //        keyboard.Update();
-                    //        Thread.Sleep(100);
-                    //    }
-                    //}
                     var p1 = new PointF(0.0f, 0.0f);
                     var p2 = new PointF(22.0f, 5.0f);
+                    var p3 = new PointF(0.0f, 5.0f);
+                    var p4 = new PointF(22.0f, 0.0f);
 
                     for (int x = 0; x < 23; x++) {
-                        LEDClear(keyboard);
+                        //LEDClear(keyboard);
+
                         Draw.LEDDrawAt(keyboard, Color.Green, Lerp(p1, p2, x/23.0f));
-                        Draw.LEDDrawAt(keyboard, Color.Red, p1);
-                        Draw.LEDDrawAt(keyboard, Color.Red, p2);
-                        keyboard.Update();
-                        Thread.Sleep(300);
+                        Draw.LEDDrawAt(keyboard, Color.Blue, Lerp(p1, p3, x / 23.0f));
+                        Draw.LEDDrawAt(keyboard, Color.Purple, Lerp(p1, p4, x / 23.0f));
+                        Draw.LEDDrawAt(keyboard, Color.Purple, Lerp(p2, p3, x / 23.0f));
+                        Draw.LEDDrawAt(keyboard, Color.Blue, Lerp(p2, p4, x / 23.0f));
+                        Draw.LEDDrawAt(keyboard, Color.Green, Lerp(p3, p4, x / 23.0f));
                     }
+
+                    Draw.LEDDrawAt(keyboard, Color.Red, p1);
+                    Draw.LEDDrawAt(keyboard, Color.Red, p2);
+                    Draw.LEDDrawAt(keyboard, Color.Red, p3);
+                    Draw.LEDDrawAt(keyboard, Color.Red, p4);
+                    keyboard.Update();
                 }
 
             } catch (CUEException ex) {
