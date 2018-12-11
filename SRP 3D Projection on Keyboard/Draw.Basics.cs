@@ -27,7 +27,7 @@ namespace SRP_3D_Projection_on_Keyboard
             LEDDrawAt(k, c, (int)p.X, (int)p.Y);
         }
 
-        //W:23 H:6
+        //W:23 H:6 hvor 7 punkter ikke er der, og nogle punkter med samme lys, da de dækker over mere.
         public static void LEDDrawAt(CorsairKeyboard k, Color c, int x, int y)
         {
             switch (y)

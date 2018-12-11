@@ -70,15 +70,13 @@ namespace SRP_3D_Projection_on_Keyboard {
             keyboard.Update();
         }
 
-        private static PointF Lerp(PointF fP, PointF sP, float by)
-        {
+        private static PointF Lerp(PointF fP, PointF sP, float by) {
             float retX = Lerp(fP.X, sP.X, by);
             float retY = Lerp(fP.Y, sP.Y, by);
             return new PointF(retX, retY);
         }
 
-        private static float Lerp(float firstFloat, float secondFloat, float by)
-        {
+        private static float Lerp(float firstFloat, float secondFloat, float by) {
             return firstFloat * (1 - by) + secondFloat * by;
         }
     }
