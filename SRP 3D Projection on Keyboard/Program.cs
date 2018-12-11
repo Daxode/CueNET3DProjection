@@ -33,20 +33,20 @@ namespace SRP_3D_Projection_on_Keyboard {
 
                 keyboard.Brush = (SolidColorBrush)Color.Transparent;
                 while (true) {
-                    var p1 = new PointF(0.0f, 0.0f);
-                    var p2 = new PointF(22.0f, 5.0f);
-                    var p3 = new PointF(0.0f, 5.0f);
-                    var p4 = new PointF(22.0f, 0.0f);
+                    var p1 = new PointF(5.0f, 2.0f);
+                    var p2 = new PointF(9.0f, 4.0f);
+                    var p3 = new PointF(6.0f, 4.0f);
+                    var p4 = new PointF(8.0f, 2.0f);
 
                     for (int x = 0; x < 23; x++) {
                         //LEDClear(keyboard);
 
-                        Draw.LEDDrawAt(keyboard, Color.Green, Lerp(p1, p2, x/23.0f));
                         Draw.LEDDrawAt(keyboard, Color.Blue, Lerp(p1, p3, x / 23.0f));
+                        Draw.LEDDrawAt(keyboard, Color.Blue, Lerp(p2, p4, x / 23.0f));
                         Draw.LEDDrawAt(keyboard, Color.Purple, Lerp(p1, p4, x / 23.0f));
                         Draw.LEDDrawAt(keyboard, Color.Purple, Lerp(p2, p3, x / 23.0f));
-                        Draw.LEDDrawAt(keyboard, Color.Blue, Lerp(p2, p4, x / 23.0f));
-                        Draw.LEDDrawAt(keyboard, Color.Green, Lerp(p3, p4, x / 23.0f));
+                        //Draw.LEDDrawAt(keyboard, Color.Green, Lerp(p3, p4, x / 23.0f));
+                        //Draw.LEDDrawAt(keyboard, Color.Green, Lerp(p1, p2, x / 23.0f));
                     }
 
                     Draw.LEDDrawAt(keyboard, Color.Red, p1);
