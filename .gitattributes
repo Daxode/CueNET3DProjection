@@ -2,8 +2,7 @@
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 * text=auto
-
-###############################################################################
+ ###############################################################################
 # Set default behavior for command prompt diff.
 #
 # This is need for earlier builds of msysgit that does not have it on by
@@ -11,8 +10,7 @@
 # Note: This is only used by command line
 ###############################################################################
 #*.cs     diff=csharp
-
-###############################################################################
+ ###############################################################################
 # Set the merge driver for project and solution files
 #
 # Merging from the command prompt will add diff markers to the files if there
@@ -34,8 +32,7 @@
 #*.modelproj merge=binary
 #*.sqlproj   merge=binary
 #*.wwaproj   merge=binary
-
-###############################################################################
+ ###############################################################################
 # behavior for image files
 #
 # image files are treated as binary by default.
@@ -43,8 +40,7 @@
 #*.jpg   binary
 #*.png   binary
 #*.gif   binary
-
-###############################################################################
+ ###############################################################################
 # diff behavior for common document formats
 # 
 # Convert binary document formats to text before diffing them. This feature
