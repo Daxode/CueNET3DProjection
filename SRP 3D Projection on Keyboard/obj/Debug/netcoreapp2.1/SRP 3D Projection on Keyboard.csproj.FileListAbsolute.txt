@@ -9,3 +9,9 @@ C:\Users\dani4\source\repos\SRP 3D Projection on Keyboard\SRP 3D Projection on K
 C:\Users\dani4\source\repos\SRP 3D Projection on Keyboard\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.csprojAssemblyReference.cache
 C:\Users\dani4\source\repos\SRP 3D Projection on Keyboard\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.dll
 C:\Users\dani4\source\repos\SRP 3D Projection on Keyboard\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.pdb
+C:\Users\dka\Source\Repos\CueNET3DProjection\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.csprojAssemblyReference.cache
+C:\Users\dka\Source\Repos\CueNET3DProjection\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.csproj.CoreCompileInputs.cache
+C:\Users\dka\Source\Repos\CueNET3DProjection\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.AssemblyInfoInputs.cache
+C:\Users\dka\Source\Repos\CueNET3DProjection\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.AssemblyInfo.cs
+C:\Users\dka\Source\Repos\CueNET3DProjection\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.dll
+C:\Users\dka\Source\Repos\CueNET3DProjection\SRP 3D Projection on Keyboard\obj\Debug\netcoreapp2.1\SRP 3D Projection on Keyboard.pdb
