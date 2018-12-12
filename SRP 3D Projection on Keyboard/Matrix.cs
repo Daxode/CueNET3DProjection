@@ -40,7 +40,29 @@ namespace SRP_3D_Projection_on_Keyboard {
 
         //Matrix rotation 
         public static PointF3D Rotate(PointF3D rotation, PointF3D vertex) {
-            return null;
+            float[,] rotationX = {
+                { 1, 0, 0},
+                { 0, (float)Math.Cos(rotation.x), (float)-Math.Sin(rotation.x)},
+                { 0, (float)Math.Sin(rotation.x), (float)Math.Cos(rotation.x)}
+            };
+
+            float[,] rotationY = {
+                { (float)Math.Cos(rotation.y), 0, (float)Math.Sin(rotation.y)},
+                { 0, 1, 0},
+                { (float)-Math.Sin(rotation.y), 0, (float)Math.Cos(rotation.y)}
+            };
+
+            float[,] rotationZ = {
+                { (float)Math.Cos(rotation.z), (float)-Math.Sin(rotation.z), 0},
+                { (float)Math.Sin(rotation.z), (float)Math.Cos(rotation.z), 0},
+                { 0, 0, 1}
+            };
+
+            PointF3D rotated = Multiply3D(rotationY, vertex);
+            rotated = Multiply3D(rotationX, rotated);
+            rotated = Multiply3D(rotationZ, rotated);
+
+            return rotated;
         }
 
         //Matrix projektion
@@ -50,7 +72,7 @@ namespace SRP_3D_Projection_on_Keyboard {
                     {0, 1, 0}
             };
 
-            return Matrix.Multiply(projectionM, vertex);
+            return Matrix.Multiply2D(projectionM, vertex);
         }
 
         public static float[,] ToMatrix(PointF3D p) {
@@ -83,7 +105,11 @@ namespace SRP_3D_Projection_on_Keyboard {
             return p;
         }
 
-        public static PointF Multiply(float[,] a, PointF3D b) {
+        public static PointF3D Multiply3D(float[,] a, PointF3D b) {
+            return ToPoint3D(Multiply(a, ToMatrix(b)));
+        }
+
+        public static PointF Multiply2D(float[,] a, PointF3D b) {
             return ToPoint(Multiply(a, ToMatrix(b)));
         }
 

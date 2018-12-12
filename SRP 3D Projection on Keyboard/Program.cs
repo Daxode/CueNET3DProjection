@@ -32,12 +32,9 @@ namespace SRP_3D_Projection_on_Keyboard {
                     throw new WrapperException("No keyboard found");
 
                 keyboard.Brush = (SolidColorBrush)Color.Transparent;
-                var p = new PointF3D(2, 5, 6);
-                Matrix.Log(p);
-
-                Matrix.Log(Matrix.Project(p));
-
+                
                 while (true) {
+
                     keyboard.Update();
                 }
 
