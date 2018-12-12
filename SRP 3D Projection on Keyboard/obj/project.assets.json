@@ -709,23 +709,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dani4\\.nuget\\packages\\": {},
+    "C:\\Users\\dka\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dani4\\source\\repos\\SRP 3D Projection on Keyboard\\SRP 3D Projection on Keyboard\\SRP 3D Projection on Keyboard.csproj",
+      "projectUniqueName": "C:\\Users\\dka\\Source\\Repos\\CueNET3DProjection\\SRP 3D Projection on Keyboard\\SRP 3D Projection on Keyboard.csproj",
       "projectName": "SRP 3D Projection on Keyboard",
-      "projectPath": "C:\\Users\\dani4\\source\\repos\\SRP 3D Projection on Keyboard\\SRP 3D Projection on Keyboard\\SRP 3D Projection on Keyboard.csproj",
-      "packagesPath": "C:\\Users\\dani4\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dani4\\source\\repos\\SRP 3D Projection on Keyboard\\SRP 3D Projection on Keyboard\\obj\\",
+      "projectPath": "C:\\Users\\dka\\Source\\Repos\\CueNET3DProjection\\SRP 3D Projection on Keyboard\\SRP 3D Projection on Keyboard.csproj",
+      "packagesPath": "C:\\Users\\dka\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dka\\Source\\Repos\\CueNET3DProjection\\SRP 3D Projection on Keyboard\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\dani4\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dka\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
