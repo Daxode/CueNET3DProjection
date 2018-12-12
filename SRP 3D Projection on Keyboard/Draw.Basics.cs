@@ -22,19 +22,19 @@ namespace SRP_3D_Projection_on_Keyboard
 {
     class Draw
     {
-        public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF p)
-        {
+        public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF p) {
+            LEDDrawAt(k, c, (int)p.X, (int)p.Y);
+        }
+
+        public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF p)  {
             LEDDrawAt(k, c, (int)p.X, (int)p.Y);
         }
 
         //W:23 H:6 hvor 7 punkter ikke er der, og nogle punkter med samme lys, da de dækker over mere.
-        public static void LEDDrawAt(CorsairKeyboard k, Color c, int x, int y)
-        {
-            switch (y)
-            {
+        public static void LEDDrawAt(CorsairKeyboard k, Color c, int x, int y) {
+            switch (y) {
                 default:
-                    switch (x)
-                    {
+                    switch (x) {
                         default:
                             k[CorsairKeyboardLedId.G3].Color = c;
                             break;
@@ -108,8 +108,7 @@ namespace SRP_3D_Projection_on_Keyboard
                     break;
 
                 case 1:
-                    switch (x)
-                    {
+                    switch (x) {
                         default:
                             k[CorsairLedId.G6].Color = c;
                             break;
@@ -182,8 +181,7 @@ namespace SRP_3D_Projection_on_Keyboard
                     } break;
 
                 case 2:
-                    switch (x)
-                    {
+                    switch (x) {
                         default:
                             k[CorsairLedId.G9].Color = c;
                             break;
@@ -256,8 +254,7 @@ namespace SRP_3D_Projection_on_Keyboard
                     } break;
 
                 case 3:
-                    switch (x)
-                    {
+                    switch (x) {
                         default:
                             k[CorsairLedId.G12].Color = c;
                             break;
@@ -330,8 +327,7 @@ namespace SRP_3D_Projection_on_Keyboard
                     } break;
 
                 case 4:
-                    switch (x)
-                    {
+                    switch (x) {
                         default:
                             k[CorsairLedId.G15].Color = c;
                             break;
@@ -404,8 +400,7 @@ namespace SRP_3D_Projection_on_Keyboard
                     } break;
 
                 case 5:
-                    switch (x)
-                    {
+                    switch (x) {
                         default:
                             k[CorsairLedId.G18].Color = c;
                             break;
