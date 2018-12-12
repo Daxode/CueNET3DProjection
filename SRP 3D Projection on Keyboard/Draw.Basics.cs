@@ -18,16 +18,23 @@ using CUE.NET.Devices.Keyboard.Enums;
 using CUE.NET.Devices.Mouse;
 using CUE.NET.Devices.Mouse.Enums;
 
-namespace SRP_3D_Projection_on_Keyboard
-{
-    class Draw
-    {
-        public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF p) {
-            LEDDrawAt(k, c, (int)p.X, (int)p.Y);
+namespace SRP_3D_Projection_on_Keyboard {
+    class Draw {
+        public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF[] ps) {
+            foreach (var p in ps) {
+                LEDDrawAt(k, c, (int)p.X, (int)p.Y); 
+            }
         }
 
         public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF p)  {
             LEDDrawAt(k, c, (int)p.X, (int)p.Y);
+        }
+
+        public static void LEDDrawLineAt(CorsairKeyboard k, Color c, PointF pStart, PointF pEnd) {
+            int res = 23;
+            for (int x = 0; x < res; x++) {
+                Draw.LEDDrawAt(k, c, Program.Lerp(pStart, pEnd, x / (float)res));
+            }
         }
 
         //W:23 H:6 hvor 7 punkter ikke er der, og nogle punkter med samme lys, da de dækker over mere.
