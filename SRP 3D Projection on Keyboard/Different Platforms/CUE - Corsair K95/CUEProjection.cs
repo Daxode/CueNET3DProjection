@@ -17,15 +17,15 @@ using CUE.NET.Devices.Keyboard;
 using CUE.NET.Devices.Keyboard.Enums;
 using CUE.NET.Devices.Mouse;
 using CUE.NET.Devices.Mouse.Enums;
+using Console = System.Console;
+using SRP_3D_Projection_on_Keyboard.Basic_Projection;
 
-namespace SRP_3D_Projection_on_Keyboard {
-    class Program {
-        static void Main(string[] args) {
-            Random rd = new Random();
-
+namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.CUE {
+    class Projection {
+        public static void Main(Model model) {
             try {
                 CueSDK.Initialize();
-                Console.WriteLine("Initialized with " + CueSDK.LoadedArchitecture + "-SDK");
+                System.Console.WriteLine("Initialized with " + CueSDK.LoadedArchitecture + "-SDK");
 
                 CorsairKeyboard keyboard = CueSDK.KeyboardSDK;
                 if (keyboard == null)
@@ -33,20 +33,6 @@ namespace SRP_3D_Projection_on_Keyboard {
 
                 keyboard.Brush = (SolidColorBrush)Color.Transparent;
 
-                //Dette er en simpel kasse
-                PointF3D[] modelVertexes = {
-                    new PointF3D(-2f,  2f, -2f), //Back upper left
-                    new PointF3D( 2f,  2f, -2f), //Back upper right
-                    new PointF3D(-2f, -2f, -2f), //Back lower left
-                    new PointF3D( 2f, -2f, -2f), //Back lower right
-
-                    new PointF3D(-1,  1, 1), //Front upper left
-                    new PointF3D( 1,  1, 1), //Front upper right
-                    new PointF3D(-1, -1, 1), //Front lower left
-                    new PointF3D( 1, -1, 1), //Front lower right
-                };
-
-                Model model = new Model(modelVertexes); //Skab modellen med sine vertexer
                 model.Translation(new PointF(6, 2)); //Flyt den ind i midten af tastaturet
                 model.Translation(new PointF3D(0)); //Flyt modellen
 
@@ -68,7 +54,7 @@ namespace SRP_3D_Projection_on_Keyboard {
                     //Matrix.Log(model.GetRotation());
 
                     Draw.LEDClear(keyboard);
-                    Console.Clear();
+                    System.Console.Clear();
 
                     model.Draw(keyboard, Color.Red, Color.Green);
                     keyboard.Update();
@@ -77,22 +63,12 @@ namespace SRP_3D_Projection_on_Keyboard {
                 }
 
             } catch (CUEException ex) {
-                Console.WriteLine("CUE Exception! ErrorCode: " + Enum.GetName(typeof(CorsairError), ex.Error));
+                System.Console.WriteLine("CUE Exception! ErrorCode: " + Enum.GetName(typeof(CorsairError), ex.Error));
             } catch (WrapperException ex) {
-                Console.WriteLine("Wrapper Exception! Message:" + ex.Message);
+                System.Console.WriteLine("Wrapper Exception! Message:" + ex.Message);
             }
 
-            Console.Read();
-        }
-
-        public static PointF Lerp(PointF fP, PointF sP, float by) {
-            float retX = Lerp(fP.X, sP.X, by);
-            float retY = Lerp(fP.Y, sP.Y, by);
-            return new PointF(retX, retY);
-        }
-
-        public static float Lerp(float firstFloat, float secondFloat, float by) {
-            return firstFloat * (1 - by) + secondFloat * by;
+            System.Console.Read();
         }
     }
 }

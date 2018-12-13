@@ -17,8 +17,9 @@ using CUE.NET.Devices.Keyboard;
 using CUE.NET.Devices.Keyboard.Enums;
 using CUE.NET.Devices.Mouse;
 using CUE.NET.Devices.Mouse.Enums;
+using SRP_3D_Projection_on_Keyboard.Basic_Projection;
 
-namespace SRP_3D_Projection_on_Keyboard {
+namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.CUE {
     class Draw {
         //Clear keyboard
         public static void LEDClear(CorsairKeyboard keyboard) {
@@ -49,7 +50,7 @@ namespace SRP_3D_Projection_on_Keyboard {
         public static void LEDDrawLineAt(CorsairKeyboard k, Color c, PointF pStart, PointF pEnd) {
             int res = 23;
             for (int x = 0; x < res; x++) {
-                Draw.LEDDrawAt(k, c, Program.Lerp(pStart, pEnd, x / (float)res));
+                LEDDrawAt(k, c, PointF3D.Lerp(pStart, pEnd, x / (float)res));
             }
         }
 

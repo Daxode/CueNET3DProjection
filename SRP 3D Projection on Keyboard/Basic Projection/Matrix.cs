@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace SRP_3D_Projection_on_Keyboard {
+namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
     //Den her klasse var hjulpet på vej af Daniel Shiffman - https://github.com/CodingTrain/website/tree/master/CodingChallenges/CC_112_3D_Rendering/Processing
     class Matrix {
         //Matrix multiplikation

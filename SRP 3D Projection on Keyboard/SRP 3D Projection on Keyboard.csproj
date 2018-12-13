@@ -1,13 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>SRP_3D_Projection_on_Keyboard</RootNamespace>
   </PropertyGroup>
-
+  
+  <ItemGroup>
+    <Compile Remove="Different Platforms\CUE %2528Corsair K95%2529\**" />
+    <EmbeddedResource Remove="Different Platforms\CUE %2528Corsair K95%2529\**" />
+    <None Remove="Different Platforms\CUE %2528Corsair K95%2529\**" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="CUE.NET" Version="1.2.0.1" />
   </ItemGroup>
-
 </Project>

@@ -4,7 +4,7 @@ using System.Text;
 using System.Drawing;
 using CUE.NET.Devices.Keyboard;
 
-namespace SRP_3D_Projection_on_Keyboard {
+namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
     class Model {
         private PointF3D[] vertexes;
         private PointF3D rotation;
@@ -47,7 +47,7 @@ namespace SRP_3D_Projection_on_Keyboard {
         }
 
         private void DrawPoints(CorsairKeyboard keyboard, Color color) {
-            SRP_3D_Projection_on_Keyboard.Draw.LEDDrawAt(keyboard, color, calc2DPoints, translator2D);
+            Different_Platforms.CUE.Draw.LEDDrawAt(keyboard, color, calc2DPoints, translator2D);
         }
 
         private void CalcNewPoints() {
