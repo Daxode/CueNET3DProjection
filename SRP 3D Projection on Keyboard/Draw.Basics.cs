@@ -20,16 +20,32 @@ using CUE.NET.Devices.Mouse.Enums;
 
 namespace SRP_3D_Projection_on_Keyboard {
     class Draw {
+        //Clear keyboard
+        public static void LEDClear(CorsairKeyboard keyboard) {
+            keyboard.RestoreColors();
+            keyboard.Update();
+        }
+
+        //Draw points(ps) with color(c) on keyboard(k)
         public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF[] ps) {
             foreach (var p in ps) {
                 LEDDrawAt(k, c, (int)p.X, (int)p.Y); 
             }
         }
 
+        //Draw points(ps) with color(c) and offset on keyboard(k)
+        public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF[] ps, PointF offset){
+            foreach (var p in ps) {
+                LEDDrawAt(k, c, (int)(p.X + offset.X), (int)(p.Y + offset.Y));
+            }
+        }
+
+        //Draw point(p) with color(c) on keyboard(k)
         public static void LEDDrawAt(CorsairKeyboard k, Color c, PointF p)  {
             LEDDrawAt(k, c, (int)p.X, (int)p.Y);
         }
 
+        //Draw line between pStart and pEnd with color(c) on keyboard(k)
         public static void LEDDrawLineAt(CorsairKeyboard k, Color c, PointF pStart, PointF pEnd) {
             int res = 23;
             for (int x = 0; x < res; x++) {

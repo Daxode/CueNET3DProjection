@@ -4,8 +4,8 @@ using System.Text;
 using System.Drawing;
 
 namespace SRP_3D_Projection_on_Keyboard {
+    //Den her klasse var hjulpet på vej af Daniel Shiffman - https://github.com/CodingTrain/website/tree/master/CodingChallenges/CC_112_3D_Rendering/Processing
     class Matrix {
-
         //Matrix multiplikation
         public static float[,] Multiply(float[,] a, float[,] b) {
             var aRows = a.GetLength(0);
@@ -16,7 +16,7 @@ namespace SRP_3D_Projection_on_Keyboard {
 
             if (aCols != bRows)
             {
-                Console.WriteLine("Columns of A must match rows of B");
+                Console.WriteLine("Mængden af kolonner i A skal være ens med mængden af rækker i B");
                 return null;
             }
 

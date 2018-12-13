@@ -32,10 +32,48 @@ namespace SRP_3D_Projection_on_Keyboard {
                     throw new WrapperException("No keyboard found");
 
                 keyboard.Brush = (SolidColorBrush)Color.Transparent;
-                
-                while (true) {
 
+                //Dette er en simpel kasse
+                PointF3D[] modelVertexes = {
+                    new PointF3D(-2f,  2f, -2f), //Back upper left
+                    new PointF3D( 2f,  2f, -2f), //Back upper right
+                    new PointF3D(-2f, -2f, -2f), //Back lower left
+                    new PointF3D( 2f, -2f, -2f), //Back lower right
+
+                    new PointF3D(-1,  1, 1), //Front upper left
+                    new PointF3D( 1,  1, 1), //Front upper right
+                    new PointF3D(-1, -1, 1), //Front lower left
+                    new PointF3D( 1, -1, 1), //Front lower right
+                };
+
+                Model model = new Model(modelVertexes); //Skab modellen med sine vertexer
+                model.Translation(new PointF(6, 2)); //Flyt den ind i midten af tastaturet
+                model.Translation(new PointF3D(0)); //Flyt modellen
+
+                while (true) {
+                    model.RotateBy(new PointF3D(/*(float)(Math.PI / 32d)*/0, (float)(Math.PI / 32d), (float)(Math.PI / 32d)));
+
+                    //Console.WriteLine("Model points");
+                    //foreach (var point in model.GetPoints()) {
+                    //    Matrix.Log(point);
+                    //}
+
+                    //Console.WriteLine("Translator");
+                    //Matrix.Log(model.GetTranslater());
+
+                    //Console.WriteLine("Translator2D");
+                    //Matrix.Log(model.GetTranslater2D());
+
+                    //Console.WriteLine("Rotation");
+                    //Matrix.Log(model.GetRotation());
+
+                    Draw.LEDClear(keyboard);
+                    Console.Clear();
+
+                    model.Draw(keyboard, Color.Red, Color.Green);
                     keyboard.Update();
+
+                    Thread.Sleep((int)(0.1*1000));
                 }
 
             } catch (CUEException ex) {
@@ -45,11 +83,6 @@ namespace SRP_3D_Projection_on_Keyboard {
             }
 
             Console.Read();
-        }
-
-        public static void LEDClear(CorsairKeyboard keyboard) {
-            keyboard.RestoreColors();
-            keyboard.Update();
         }
 
         public static PointF Lerp(PointF fP, PointF sP, float by) {
