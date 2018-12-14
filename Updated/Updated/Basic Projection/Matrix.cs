@@ -70,7 +70,7 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
             //float distance = 0.0001f;
             //float zee = (1f / Math.Abs(distance - vertex.z));
 
-            float zee = 0.5f;
+            float zee = 1f;
 
             float[,] projectionM = {
                     {zee, 0, 0},

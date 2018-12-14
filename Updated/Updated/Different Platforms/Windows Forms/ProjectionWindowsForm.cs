@@ -26,7 +26,10 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
                 model.RotateBy(new PointF3D((float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount)));
 
                 canvas.Clear();
+                model.Translation(new PointF(200, 200)); //Flyt den ind i midten af tastaturet
                 model.Draw(canvas, Color.Red, Color.Green);
+                model.Translation(new PointF(600, 200)); //Flyt den ind i midten af tastaturet
+                model.Draw(canvas, Color.RoyalBlue, Color.Purple);
 
                 Thread.Sleep((int)(0.03 * 1000));
             }
