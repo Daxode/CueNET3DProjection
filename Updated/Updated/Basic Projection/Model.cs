@@ -132,6 +132,40 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
             canvas.DrawAt(color, calc2DPoints);
         }
 
+        public void Draw(Draw canvas, ConsoleColor colorPoints, ConsoleColor colorLines) {
+            //Tegner linjer foerst
+            DrawLines(canvas, colorLines);
+
+            //Derefter punkter
+            DrawPoints(canvas, colorPoints); 
+        }
+
+        //Her tegner vi et wireframe
+        private void DrawLines(Draw canvas, ConsoleColor color) {
+            foreach (var polyLine in polyLines) {
+                //Loop through polyline
+                for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
+                    //Draw line
+                    canvas.DrawLineAt(color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
+                }
+            }
+
+            foreach (var face in faces) {
+                //Loop through polyline in face
+                for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
+                    //Draw line
+                    canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
+                }
+
+                //Draw last line
+                canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]); 
+            }
+        }
+
+        private void DrawPoints(Draw canvas, ConsoleColor color) {
+            canvas.DrawAt(color, calc2DPoints);
+        }
+
         private void CalcNewPoints() {
             //For each vertex in model
             for (int i = 0; i < vertexes.Length; i++) {

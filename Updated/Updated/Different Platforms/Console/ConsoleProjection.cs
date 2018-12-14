@@ -9,11 +9,15 @@ using SRP_3D_Projection_on_Keyboard.Basic_Projection;
 namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.Console {
     class Projection {
         public static void Main(Model model) {
-            model.Translation(new PointF(6, 2)); //Flyt den ind i midten af tastaturet
+            model.Translation(new PointF(22, 12)); //Flyt den ind i midten af tastaturet
             model.Translation(new PointF3D(0)); //Flyt modellen
+            model.Scaler(7);
+            const double rotateAmount = 128d;
+            var canvSize = new Size(55, 25);
+            var canvas = new Draw(canvSize);
 
             while (true) {
-                model.RotateBy(new PointF3D(/*(float)(Math.PI / 32d)*/0, (float)(Math.PI / 32d), (float)(Math.PI / 32d)));
+                model.RotateBy(new PointF3D((float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount)));
 
                 //Console.WriteLine("Model points");
                 //foreach (var point in model.GetPoints()) {
@@ -28,12 +32,13 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.Console {
 
                 //Console.WriteLine("Rotation");
                 //Matrix.Log(model.GetRotation());
-
-                System.Console.Clear();
+                canvas.Clear();
+                model.Draw(canvas, ConsoleColor.Red, ConsoleColor.Green);
+                canvas.Update();
 
                 //model.Draw(, Color.Red, Color.Green);
 
-                Thread.Sleep((int)(0.1*1000));
+                //Thread.Sleep((int)(0.1*1000));
             }
         }
     }

@@ -47,8 +47,9 @@ namespace SRP_3D_Projection_on_Keyboard {
                 } else if (which == "c") {
                     Different_Platforms.Console.Projection.Main(model);
                 } else {
-                    Console.WriteLine("Ikke en af valgene, prøv igen");
+                    Console.Write("Ikke en af valgene, ");
                 }
+                Console.WriteLine("prøv noget andet");
             }
         }
     }

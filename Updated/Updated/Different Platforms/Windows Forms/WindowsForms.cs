@@ -27,13 +27,10 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
 
         private void WindowsForms_Painter(object sender, PaintEventArgs e) {
             gr = e.Graphics;
-            backgroundWorker1.RunWorkerAsync();
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
             //Drawing
-            while (gr != null){
+            while (gr != null) {
                 Projection.ActualStuff(model, this);
+                Thread.Sleep(10);
             }
         }
 
