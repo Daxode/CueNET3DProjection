@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SRP_3D_Projection_on_Keyboard.Basic_Projection;
@@ -18,12 +19,22 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
 
         public WindowsForms(Model model) {
             InitializeComponent();
+            model.Translation(new PointF(200, 200)); //Flyt den ind i midten af tastaturet
+            model.Translation(new PointF3D()); //Flyt modellen
+            model.Scaler(100.0f);
             this.model = model;
         }
 
         private void WindowsForms_Painter(object sender, PaintEventArgs e) {
             gr = e.Graphics;
-            Projection.ActualStuff(model, this);
+            backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
+            //Drawing
+            while (gr != null){
+                Projection.ActualStuff(model, this);
+            }
         }
 
         //Clear form

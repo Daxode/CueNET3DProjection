@@ -16,23 +16,16 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
 
         //Windows forms skal selv kører det
         public static void ActualStuff(Model model, WindowsForms canvas) {
+            const double rotateAmount = 128d;
+            model.RotateBy(new PointF3D((float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount)));
+
+            canvas.Clear();
             model.Translation(new PointF(200, 200)); //Flyt den ind i midten af tastaturet
-            model.Translation(new PointF3D(0)); //Flyt modellen
-            model.Scaler(100.0f);
-            double rotateAmount = 64d;
+            model.Draw(canvas, Color.Red, Color.Green);
+            model.Translation(new PointF(600, 200)); //Flyt den ind i midten af tastaturet
+            model.Draw(canvas, Color.RoyalBlue, Color.Purple);
 
-            while (true)
-            {
-                model.RotateBy(new PointF3D((float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount)));
-
-                canvas.Clear();
-                model.Translation(new PointF(200, 200)); //Flyt den ind i midten af tastaturet
-                model.Draw(canvas, Color.Red, Color.Green);
-                model.Translation(new PointF(600, 200)); //Flyt den ind i midten af tastaturet
-                model.Draw(canvas, Color.RoyalBlue, Color.Purple);
-
-                Thread.Sleep((int)(0.03 * 1000));
-            }
+            //Thread.Sleep((int)(0.03 * 1000));
         }
     }
 }
