@@ -35,10 +35,10 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.CUE {
 
                 model.Translation(new PointF(10, 3)); //Flyt den ind i midten af tastaturet
                 model.Translation(new PointF3D(0)); //Flyt modellen
-                model.Scaler(2.0f);
-
+                model.Scaler(4.0f);
+                double rotateAmount = 64d;
                 while (true) {
-                    model.RotateBy(new PointF3D(/*(float)(Math.PI / 32d)*/0, (float)(Math.PI / 32d), (float)(Math.PI / 32d)));
+                    model.RotateBy(new PointF3D((float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount)));
 
                     Draw.LEDClear(keyboard);
                     System.Console.Clear();

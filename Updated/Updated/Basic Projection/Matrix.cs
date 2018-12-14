@@ -67,9 +67,14 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
 
         //Matrix projektion
         public static PointF Project(PointF3D vertex) {
+            //float distance = 0.0001f;
+            //float zee = (1f / Math.Abs(distance - vertex.z));
+
+            float zee = 0.5f;
+
             float[,] projectionM = {
-                    {1, 0, 0},
-                    {0, 1, 0}
+                    {zee, 0, 0},
+                    {0, zee, 0}
             };
 
             return Matrix.Multiply2D(projectionM, vertex);

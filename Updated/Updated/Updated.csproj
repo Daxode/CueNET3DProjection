@@ -62,7 +62,6 @@
     <Compile Include="Different Platforms\Console\DrawConsole.cs" />
     <Compile Include="Different Platforms\CUE - Corsair K95\CUEProjection.cs" />
     <Compile Include="Different Platforms\CUE - Corsair K95\DrawCUE.cs" />
-    <Compile Include="Different Platforms\Windows Forms\DrawWindowsForm.cs" />
     <Compile Include="Different Platforms\Windows Forms\ProjectionWindowsForm.cs" />
     <Compile Include="Different Platforms\Windows Forms\WindowsForms.cs">
       <SubType>Form</SubType>

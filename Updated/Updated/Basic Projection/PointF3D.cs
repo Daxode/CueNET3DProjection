@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 
 namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
-    class PointF3D {
+    public class PointF3D {
         public float x = 0;
         public float y = 0;
         public float z = 0;

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using CUE.NET.Devices.Keyboard;
+using SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm;
+using SRP_3D_Projection_on_Keyboard.Different_Platforms.Console;
 
 namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
-    class Model {
+    public class Model {
         private PointF3D[] vertexes;
         private PolyLine[] faces;
         private PolyLine[] polyLines;
@@ -63,13 +65,14 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
     }
 
         public void Draw(CorsairKeyboard keyboard, Color colorPoints, Color colorLines) {
-            //Draw points
-            DrawPoints(keyboard, colorPoints);
-
-            //Draw lines between them
+            //Draw lines
             DrawLines(keyboard, colorLines);
+
+            //Draw with points on them
+            DrawPoints(keyboard, colorPoints); 
         }
 
+        //Her tegner vi et wireframe
         private void DrawLines(CorsairKeyboard keyboard, Color color) {
             foreach (var polyLine in polyLines) {
                 //Loop through polyline
@@ -93,6 +96,40 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
 
         private void DrawPoints(CorsairKeyboard keyboard, Color color) {
             Different_Platforms.CUE.Draw.LEDDrawAt(keyboard, color, calc2DPoints);
+        }
+
+        public void Draw(WindowsForms canvas, Color colorPoints, Color colorLines) {
+            //Draw lines
+            DrawLines(canvas, colorLines);
+
+            //Draw with points on them
+            DrawPoints(canvas, colorPoints);
+        }
+
+        //Her tegner vi et wireframe
+        private void DrawLines(WindowsForms canvas, Color color) {
+            foreach (var polyLine in polyLines) {
+                //Loop through polyline
+                for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
+                    //Draw line
+                    canvas.DrawLineAt(color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
+                }
+            }
+
+            foreach (var face in faces) {
+                //Loop through polyline in face
+                for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
+                    //Draw line
+                    canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
+                }
+
+                //Draw last line
+                canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]); 
+            }
+        }
+
+        private void DrawPoints(WindowsForms canvas, Color color) {
+            canvas.DrawAt(color, calc2DPoints);
         }
 
         private void CalcNewPoints() {

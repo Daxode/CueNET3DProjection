@@ -19,11 +19,18 @@ namespace SRP_3D_Projection_on_Keyboard {
             };
 
             PolyLine[] modelLines = {
-                new PolyLine(0,  1, 2, 3, 0), //Front square
-                new PolyLine(4,  5, 6, 7, 4)  //Back square
+                new PolyLine(0, 4),
+                new PolyLine(1, 5),
+                new PolyLine(2, 6),
+                new PolyLine(3, 7)
             };
 
-            Model model = new Model(modelVertexes, modelLines); //Skab modellen med sine vertexer
+            PolyLine[] modelFaces = {
+                new PolyLine(0, 1, 3, 2), //Front square
+                new PolyLine(4, 5, 7, 6)  //Back square
+            };
+
+            Model model = new Model(modelVertexes, modelLines, modelFaces); //Skab modellen med sine vertexer
 
             Console.WriteLine("Her er så SRP programet, det kan vises på de tre forskellige måder som er blevet programmeret");
             Console.WriteLine("Skriv 'k' for at projektere på Corsair Platinum K95 Tastaturet");
