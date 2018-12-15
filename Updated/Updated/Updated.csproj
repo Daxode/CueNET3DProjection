@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Basic Projection\Matrix.cs" />
     <Compile Include="Basic Projection\Model.cs" />
+    <Compile Include="Basic Projection\OBJExtractor.cs" />
     <Compile Include="Basic Projection\PolyLine.cs" />
     <Compile Include="Basic Projection\PointF3D.cs" />
     <Compile Include="Different Platforms\Console\ConsoleProjection.cs" />

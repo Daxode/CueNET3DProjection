@@ -13,15 +13,16 @@ using SRP_3D_Projection_on_Keyboard.Basic_Projection;
 namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
     public partial class WindowsForms : Form {
         private Graphics gr;
-        private const float lineWidth = 5;
-        private const float pointRadius = 10;
+        private const float lineWidth = 1;
+        private const float pointRadius = 0;
         private Model model;
 
         public WindowsForms(Model model) {
             InitializeComponent();
             model.Translation(new PointF(200, 200)); //Flyt den ind i midten af tastaturet
-            model.Translation(new PointF3D()); //Flyt modellen
-            model.Scaler(100.0f);
+            model.Translation(new PointF3D(0,-200)); //Flyt modellen
+            model.Rotation(new PointF3D(0,0, (float)Math.PI));
+            model.Scaler(0.2f);
             this.model = model;
         }
 
@@ -30,7 +31,7 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
             //Drawing
             while (gr != null) {
                 Projection.ActualStuff(model, this);
-                Thread.Sleep(10);
+                //Thread.Sleep(10);
             }
         }
 

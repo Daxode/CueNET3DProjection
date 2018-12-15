@@ -30,7 +30,8 @@ namespace SRP_3D_Projection_on_Keyboard {
                 new PolyLine(4, 5, 7, 6)  //Back square
             };
 
-            Model model = new Model(modelVertexes, modelLines, modelFaces); //Skab modellen med sine vertexer
+            //Model model = new Model(modelVertexes, modelLines, modelFaces); //Skab modellen med sine vertexer
+            Model model = OBJExtractor.GetModel(@"C:\Users\dka\source\repos\CueNET3DProjection\Updated\Updated\deer.obj");
 
             Console.WriteLine("Her er så SRP programet, det kan vises på de tre forskellige måder som er blevet programmeret");
             Console.WriteLine("Skriv 'k' for at projektere på Corsair Platinum K95 Tastaturet");
