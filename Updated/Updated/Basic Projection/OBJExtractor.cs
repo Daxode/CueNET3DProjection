@@ -8,7 +8,7 @@ using SRP_3D_Projection_on_Keyboard.Basic_Projection;
 
 namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
     public class OBJExtractor {
-        public static Model GetModel(string path) {
+        public static Model GetModel(string path, PointF3D translationToMid, PointF3D rotation, float scale) {
             StreamReader fileReader = new StreamReader(path);
             List<PointF3D[]> vertexLines = new List<PointF3D[]>();
             List<PolyLine[]> lineLines = new List<PolyLine[]>();
@@ -18,7 +18,7 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
                 while (!fileReader.EndOfStream) {
                     var line = fileReader.ReadLine();
                     if (line.StartsWith("v ")) {
-                        vertexLines.Add(GetVertexes(fileReader, line));
+                        vertexLines.Add(GetVertexes(fileReader, line, translationToMid, rotation, scale));
                     } else if (line.StartsWith("l ")) {
                         lineLines.Add(GetLines(fileReader, line));
                     } else if (line.StartsWith("f ")) { 
@@ -52,12 +52,23 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
             return new Model(vertexes, polyLines, faces);
         }
 
-        public static PointF3D[] GetVertexes(StreamReader fileReader, string current) {
+        public static PointF3D[] GetVertexes(StreamReader fileReader, string current, PointF3D translationToMid, PointF3D rotation, float scale) {
             List<PointF3D> returnList = new List<PointF3D>();
             var line = current;
             do {
                 var point = line.Replace('.',',').Split(' ');
-                returnList.Add(new PointF3D((float)Convert.ToDouble(point[1]), (float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3])));
+                var vertex = new PointF3D((float)Convert.ToDouble(point[1]), (float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3]));
+
+                //Translate it
+                vertex += translationToMid;
+                
+                //Scale it
+                vertex *= scale;
+
+                //Rotate it
+                vertex = Matrix.Rotate(rotation, vertex);
+
+                returnList.Add(vertex);
                 line = fileReader.ReadLine();
             } while (line.StartsWith("v "));
 

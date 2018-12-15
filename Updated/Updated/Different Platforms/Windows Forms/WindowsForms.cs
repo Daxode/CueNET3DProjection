@@ -20,9 +20,8 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
         public WindowsForms(Model model) {
             InitializeComponent();
             model.Translation(new PointF(200, 200)); //Flyt den ind i midten af tastaturet
-            model.Translation(new PointF3D(0,-200)); //Flyt modellen
-            model.Rotation(new PointF3D(0,0, (float)Math.PI));
-            model.Scaler(0.2f);
+            model.Translation(new PointF3D()); //Flyt modellen
+            model.Scaler(100f);
             this.model = model;
         }
 

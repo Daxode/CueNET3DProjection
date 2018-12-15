@@ -60,7 +60,7 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.Console {
 
         //Draw line between pStart and pEnd with color(c) on keyboard(k)
         public void DrawLineAt(ConsoleColor c, PointF pStart, PointF pEnd) {
-            int res = 2;
+            int res = 100;
             for (int x = 0; x < res; x++) {
                 DrawAt(c, PointF3D.Lerp(pStart, pEnd, x / (float)res));
             }

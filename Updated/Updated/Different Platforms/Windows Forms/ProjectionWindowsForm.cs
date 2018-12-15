@@ -16,7 +16,7 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
 
         //Windows forms skal selv kører det
         public static void ActualStuff(Model model, WindowsForms canvas) {
-            const double rotateAmount = 128d;
+            const double rotateAmount = 32d;
             model.RotateBy(new PointF3D((float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount)));
 
             canvas.Clear();
