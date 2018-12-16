@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic Projection\Matrix.cs" />
+    <Compile Include="Basic Projection\ModelProps.cs" />
     <Compile Include="Basic Projection\Model.cs" />
     <Compile Include="Basic Projection\OBJExtractor.cs" />
     <Compile Include="Basic Projection\PolyLine.cs" />

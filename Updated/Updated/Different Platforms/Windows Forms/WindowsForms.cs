@@ -12,9 +12,7 @@ using SRP_3D_Projection_on_Keyboard.Basic_Projection;
 
 namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
     public partial class WindowsForms : Form {
-        private Graphics gr;
-        private const float lineWidth = 1;
-        private const float pointRadius = 0;
+        public Graphics gr;
         private Model model;
 
         public WindowsForms(Model model) {
@@ -27,10 +25,10 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
 
         private void WindowsForms_Painter(object sender, PaintEventArgs e) {
             gr = e.Graphics;
+
             //Drawing
             while (gr != null) {
                 Projection.ActualStuff(model, this);
-                //Thread.Sleep(10);
             }
         }
 
@@ -54,12 +52,16 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.WindowsForm {
 
         //Draw line between pStart and pEnd with color(c) on keyboard(k)
         public void DrawLineAt(Color c, PointF pStart, PointF pEnd) {
-            try { gr.DrawLine(new Pen(c, lineWidth), pStart, pEnd); } catch { }
+            try { gr.DrawLine(new Pen(c, model.properties.wFLineSize), pStart, pEnd); } catch { }
         }
 
-        //W:23 H:6 hvor 7 punkter ikke er der, og nogle punkter med samme lys, da de dækker over mere.
         public void DrawAt(Color c, int x, int y) {
-            try { gr.FillEllipse(new SolidBrush(c), x-(pointRadius/2f), y-(pointRadius/2f), pointRadius, pointRadius); } catch { }
+            DrawAt(c, x, y, model.properties.wFPointSize);
+        }
+
+        public void DrawAt(Color c, int x, int y, float radius) {
+            //Prøv at tegne cirklen indenfor området.
+            try { gr.FillEllipse(new SolidBrush(c), x-(radius / 2f), y-(radius / 2f), radius, radius); } catch { }
         }
     }
 }

@@ -19,6 +19,8 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
 
         private PointF[] calc2DPoints;
 
+        public ModelProps properties = new ModelProps();
+
         //Constructor - Main
         public Model(PointF3D[] vertexes) {
             Setup();
@@ -65,40 +67,57 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
     }
 
         public void Draw(CorsairKeyboard keyboard, Color colorPoints, Color colorLines) {
+            //Tegner rotations midt
+            if (properties.displayCenterOfRotation) {
+                Different_Platforms.CUE.Draw.LEDDrawAt(keyboard, Color.Blue, CalcNewPoint(new PointF3D())); 
+            }
+            
             //Draw lines
             DrawLines(keyboard, colorLines);
 
             //Draw with points on them
-            DrawPoints(keyboard, colorPoints); 
+            DrawPoints(keyboard, colorPoints);
         }
 
         //Her tegner vi et wireframe
         private void DrawLines(CorsairKeyboard keyboard, Color color) {
-            foreach (var polyLine in polyLines) {
-                //Loop through polyline
-                for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
-                    //Draw line
-                    Different_Platforms.CUE.Draw.LEDDrawLineAt(keyboard, color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
-                }
+            if (properties.displayLines) {
+                foreach (var polyLine in polyLines) {
+                    //Loop through polyline
+                    for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
+                        //Draw line
+                        Different_Platforms.CUE.Draw.LEDDrawLineAt(keyboard, color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
+                    }
+                } 
             }
 
-            foreach (var face in faces) {
-                //Loop through polyline in face
-                for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
-                    //Draw line
-                    Different_Platforms.CUE.Draw.LEDDrawLineAt(keyboard, color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
-                }
+            if (properties.displayFaces) {
+                foreach (var face in faces) {
+                    //Loop through polyline in face
+                    for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
+                        //Draw line
+                        Different_Platforms.CUE.Draw.LEDDrawLineAt(keyboard, color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
+                    }
 
-                //Draw last line
-                Different_Platforms.CUE.Draw.LEDDrawLineAt(keyboard, color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]); 
+                    //Draw last line
+                    Different_Platforms.CUE.Draw.LEDDrawLineAt(keyboard, color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]);
+                } 
             }
         }
 
         private void DrawPoints(CorsairKeyboard keyboard, Color color) {
-            Different_Platforms.CUE.Draw.LEDDrawAt(keyboard, color, calc2DPoints);
+            if (properties.displayPoints) {
+                Different_Platforms.CUE.Draw.LEDDrawAt(keyboard, color, calc2DPoints); 
+            }
         }
 
         public void Draw(WindowsForms canvas, Color colorPoints, Color colorLines) {
+            //Tegner rotations midt
+            if (properties.displayCenterOfRotation) {
+                var center = CalcNewPoint(new PointF3D());
+                canvas.DrawAt(Color.Blue, (int)center.X, (int)center.Y, properties.wFPointSize * 4f); 
+            }
+
             //Draw lines
             DrawLines(canvas, colorLines);
 
@@ -108,84 +127,103 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
 
         //Her tegner vi et wireframe
         private void DrawLines(WindowsForms canvas, Color color) {
-            foreach (var polyLine in polyLines) {
-                //Loop through polyline
-                for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
-                    //Draw line
-                    canvas.DrawLineAt(color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
+            if (properties.displayLines) {
+                foreach (var polyLine in polyLines) {
+                    //Loop through polyline
+                    for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
+                        //Draw line
+                        canvas.DrawLineAt(color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
+                    }
                 }
             }
 
-            foreach (var face in faces) {
-                //Loop through polyline in face
-                for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
-                    //Draw line
-                    canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
-                }
+            if (properties.displayFaces) {
+                foreach (var face in faces) {
+                    //Loop through polyline in face
+                    for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
+                        //Draw line
+                        canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
+                    }
 
-                //Draw last line
-                canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]); 
+                    //Draw last line
+                    canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]);
+                }
             }
         }
 
         private void DrawPoints(WindowsForms canvas, Color color) {
-            canvas.DrawAt(color, calc2DPoints);
+            if (properties.displayPoints) {
+                canvas.DrawAt(color, calc2DPoints); 
+            }
         }
 
         public void Draw(Draw canvas, ConsoleColor colorPoints, ConsoleColor colorLines) {
+            //Tegner rotations midt
+            if (properties.displayCenterOfRotation) {
+                canvas.DrawAt(ConsoleColor.Blue, CalcNewPoint(new PointF3D())); 
+            }
+            
             //Tegner linjer foerst
             DrawLines(canvas, colorLines);
 
             //Derefter punkter
-            DrawPoints(canvas, colorPoints); 
+            DrawPoints(canvas, colorPoints);
         }
 
         //Her tegner vi et wireframe
         private void DrawLines(Draw canvas, ConsoleColor color) {
-            foreach (var polyLine in polyLines) {
-                //Loop through polyline
-                for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
-                    //Draw line
-                    canvas.DrawLineAt(color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
+            if (properties.displayLines) {
+                foreach (var polyLine in polyLines) {
+                    //Loop through polyline
+                    for (int i = 0; i < polyLine.indexesInModel.Length - 1; i++) {
+                        //Draw line
+                        canvas.DrawLineAt(color, calc2DPoints[polyLine.indexesInModel[i]], calc2DPoints[polyLine.indexesInModel[i + 1]]);
+                    }
                 }
             }
 
-            foreach (var face in faces) {
-                //Loop through polyline in face
-                for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
-                    //Draw line
-                    canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
-                }
+            if (properties.displayFaces) {
+                foreach (var face in faces) {
+                    //Loop through polyline in face
+                    for (int i = 0; i < face.indexesInModel.Length - 1; i++) {
+                        //Draw line
+                        canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[i]], calc2DPoints[face.indexesInModel[i + 1]]);
+                    }
 
-                //Draw last line
-                canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]); 
+                    //Draw last line
+                    canvas.DrawLineAt(color, calc2DPoints[face.indexesInModel[0]], calc2DPoints[face.indexesInModel[face.indexesInModel.Length - 1]]); 
+                }
             }
         }
 
         private void DrawPoints(Draw canvas, ConsoleColor color) {
-            canvas.DrawAt(color, calc2DPoints);
+            if (properties.displayPoints) {
+                canvas.DrawAt(color, calc2DPoints); 
+            }
+        }
+
+        public PointF CalcNewPoint(PointF3D vertex) {
+            //Scale the vertex
+            var Vertex = vertex * scaler;
+
+            //Translate it
+            Vertex = Vertex + translator;
+
+            //Rotate it
+            Vertex = Matrix.Rotate(rotation, Vertex);
+
+            //Project it
+            var point = Matrix.Project(Vertex);
+
+            //Translate it
+            return new PointF(point.X + translator2D.X, point.Y + translator2D.Y);
         }
 
         private void CalcNewPoints() {
             //For each vertex in model
             for (int i = 0; i < vertexes.Length; i++) {
-                //Scale the vertex
-                var Vertex = vertexes[i] * scaler;
-
-                //Translate it
-                Vertex = Vertex + translator;
-
-                //Rotate it
-                Vertex = Matrix.Rotate(rotation, Vertex);
-
-                //Project it
-                var point = Matrix.Project(Vertex);
-
-                //Translate it
-                point = new PointF(point.X + translator2D.X, point.Y + translator2D.Y);
-
                 //Add it to calc2DPoints
-                calc2DPoints[i] = point;
+                calc2DPoints[i] = CalcNewPoint(vertexes[i]);
             }
         }
 

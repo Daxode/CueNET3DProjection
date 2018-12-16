@@ -12,12 +12,11 @@ namespace SRP_3D_Projection_on_Keyboard.Different_Platforms.Console {
             model.Translation(new PointF(22, 12)); //Flyt den ind i midten af tastaturet
             model.Translation(new PointF3D()); //Flyt modellen
             model.Scaler(7f);
-            const double rotateAmount = 128d;
             var canvSize = new Size(55, 25);
             var canvas = new Draw(canvSize);
 
             while (true) {
-                model.RotateBy(new PointF3D((float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount), (float)(Math.PI / rotateAmount)));
+                model.RotateBy(new PointF3D((float)model.properties.rotateAmount, (float)model.properties.rotateAmount, (float)model.properties.rotateAmount));
                 canvas.Clear();
                 model.Draw(canvas, ConsoleColor.Red, ConsoleColor.Green);
                 canvas.Update();

@@ -57,7 +57,16 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
             var line = current;
             do {
                 var point = line.Replace('.',',').Split(' ');
-                var vertex = new PointF3D((float)Convert.ToDouble(point[1]), (float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3]));
+                PointF3D vertex = null;
+                try {
+                    vertex = new PointF3D((float)Convert.ToDouble(point[1]), (float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3]));
+                } catch {
+                    try {
+                        vertex = new PointF3D((float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3]), (float)Convert.ToDouble(point[4]));
+                    } catch {
+                        continue;
+                    }
+                }
 
                 //Translate it
                 vertex += translationToMid;
@@ -88,17 +97,29 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
             var line = current;
             do {
                 if (line != "") {
+                    //For hver eneste linje i filen hvor den stadig starter med "which"
+                    //Separer linjen op til hver mellemrum (og sørg for korrekt decimal forståelse)
                     var point = line.Replace('.', ',').Split(' ');
                     var indexes = new List<int>();
 
+                    /*Og for hver eneste index klat,
+                    split den op til kun at få indexerne som skal tegnes sammen.
+                    og tilføj det til vores index liste, med 1 mindre, 
+                    da der her i programmet køres nul indexsering, hvorimod OBJ ikke gør. */
                     for (int i = 0; i < point.Length - 1; i++) {
                         var index = point[i + 1].Split('/')[0];
                         if (index != "") {
                             indexes.Add(Convert.ToInt32(index)-1); 
                         }
                     }
+
+                    /*Tilsidst laver vi index listen til en PolyLine, 
+                    og tilføjer den til vores liste af linjer/ansigter.*/
                     returnList.Add(new PolyLine(indexes.ToArray()));
                     line = fileReader.ReadLine();
+                    if (line == null) {
+                        break;
+                    }
                 }
             } while (line.StartsWith(which));
 
