@@ -8,9 +8,12 @@ namespace SRP_3D_Projection_on_Keyboard {
     class SelectPlatform {
         [STAThread]
         static void Main(string[] args) {
-            Start:
-            var model = AskModel();
+            var modelProps = new ModelProps();
 
+            Start:
+            var model = AskModel(modelProps);
+
+            AfterAsking:
             Console.Clear();
             Console.WriteLine("Her er så selve SRP programet, det kan vises på de tre forskellige måder som er blevet programmeret");
             Console.WriteLine("Skriv 'k' for at projektere på Corsair Platinum K95 Tastaturet");
@@ -22,6 +25,8 @@ namespace SRP_3D_Projection_on_Keyboard {
             while (true) {
                 Console.Write("Skriv her: ");
                 var which = Console.ReadKey().KeyChar;
+                Console.WriteLine("");
+                model.properties = modelProps;
                 if (which == 'k') {
                     Different_Platforms.CUE.Projection.Main(model);
                 } else if (which == 'w') {
@@ -30,6 +35,9 @@ namespace SRP_3D_Projection_on_Keyboard {
                     Different_Platforms.Console.Projection.Main(model);
                 } else if (which == 'm') {
                     goto Start;
+                } else if (which == 'p') {
+                    AskModelProps(modelProps);
+                    goto AfterAsking;
                 } else {
                     Console.Write("Ikke en af valgene, ");
                 }
@@ -37,7 +45,52 @@ namespace SRP_3D_Projection_on_Keyboard {
             }
         }
 
-        public static Model AskModel() {
+        public static void AskModelProps(ModelProps props) {
+            Console.Clear();
+            Console.WriteLine("Her er der 7 instillinger at komme igennem.");
+            props.displayCenterOfRotation = AskBool("Her angives om man ønsker at tegne punktet der roteres omkring.","Vis center rotations punkt");
+
+            Console.WriteLine("\n");
+            props.displayPoints = AskBool("Her angives om man ønsker at tegne modellens vertexer.", "Vis vertexer");
+
+            Console.WriteLine("\n");
+            props.displayFaces = AskBool("Her angives om man ønsker at tegne facaderne på modellen.", "Vis ansigter");
+
+            Console.WriteLine("\n");
+            props.displayLines = AskBool("Her angives om man ønsker at tegne 'linjer' mellem vertexerne, \nnogen typer modeller anvender dette istedet for ansigter.", "Vis linjer");
+
+
+            Console.WriteLine("\n");
+            props.rotateAmount = AskForFloatProperty("Her angives hvor meget man ønsker modellen skal roteres per billede tegnet.", "Rotations mængde", (float)(Math.PI/8d));
+
+            Console.WriteLine("");
+            props.wFLineSize = AskForFloatProperty("Her angives hvor store man ønsker linjer.", "Linje tykkelse", 1);
+
+            Console.WriteLine("");
+            props.wFPointSize = AskForFloatProperty("Her angives hvor store man ønsker punkter.", "Punkt størrelse", 2);
+        }
+
+        public static bool AskBool(string msg, string propName) {
+            if (msg != "") {
+                Console.WriteLine(msg);
+                Console.WriteLine("Angiv 'f' for at sige nej, og 't' for at sige ja.");
+            }
+
+            while (true) {
+                Console.Write(propName + ": ");
+                var which = Console.ReadKey().KeyChar;
+                if (which == 't') {
+                    return true;
+                } else if (which == 'f') {
+                    return false;
+                } else {
+                    Console.Write("Ikke en af valgene, ");
+                }
+                Console.WriteLine("prøv noget andet");
+            }
+        }
+
+        public static Model AskModel(ModelProps modelProps) {
             Console.Clear();
             Console.WriteLine("Dette er så en udvidelse af programmet, til at starte med kan du vælge om du vil \nprøve at projektere en kasse, et standard objekt eller et valgfrit objekt");
             Console.WriteLine("Skriv 'b' for at vælge kassen");
@@ -48,13 +101,13 @@ namespace SRP_3D_Projection_on_Keyboard {
             var which = whichA.KeyChar;
 
             if (which == 'b') {
-                return GetBox();
+                return GetBox(modelProps);
             } else if (which == 'd') {
                 float scale = 0.002f;
                 PointF3D translationToMid = new PointF3D(0, -500);
                 PointF3D rotation = new PointF3D(0, 0, (float)Math.PI);
                 var model = OBJExtractor.GetModel(Path.GetFullPath(@"Files to try out\deer.obj"), translationToMid, rotation, scale);
-                model.properties.rotateAmount = Math.PI/16d;
+                modelProps.rotateAmount = Math.PI/16d;
 
                 return model;
             } else {
@@ -67,6 +120,9 @@ namespace SRP_3D_Projection_on_Keyboard {
                 PointF3D translationToMid = AskForPoint3DProperty("Her angives hvor meget modellen skal skubbes for at rotationsaksen ligger i midten", new PointF3D());
                 Console.WriteLine("");
                 PointF3D rotation = AskForPoint3DProperty("Her angives modellen starts rotation i radianer, hvor x, y, og z er aksen den rotere omkring", new PointF3D());
+
+                Console.WriteLine("");
+                modelProps.rotateAmount = AskForFloatProperty("Her angives hvor meget man ønsker modellen skal roteres per billede tegnet.", "Rotations mængde", (float)(Math.PI / 8d));
 
                 Console.Clear();
                 Console.WriteLine("Super, vi prøver altså at vise fra denne sti: \n" + path + "\n");
@@ -148,7 +204,7 @@ namespace SRP_3D_Projection_on_Keyboard {
         }
 
 
-        public static Model GetBox() {
+        public static Model GetBox(ModelProps modelProps) {
             //Dette er en simpel kasse
             PointF3D[] modelVertexes = {
                 new PointF3D(-1,  1, -1), //Back upper left
@@ -174,7 +230,7 @@ namespace SRP_3D_Projection_on_Keyboard {
                 new PolyLine(4, 5, 7, 6)  //Back square
             };
             var m = new Model(modelVertexes, modelLines, modelFaces); //Skab modellen med sine vertexer
-            m.properties.rotateAmount = Math.PI / 64d;
+            modelProps.rotateAmount = Math.PI / 256d;
             return m;
         }
     }

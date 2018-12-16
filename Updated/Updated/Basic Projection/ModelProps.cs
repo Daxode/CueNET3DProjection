@@ -8,7 +8,7 @@ using SRP_3D_Projection_on_Keyboard.Different_Platforms.Console;
 
 namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
     public class ModelProps {
-        public bool displayPoints = true;
+        public bool displayPoints = false;
         public bool displayFaces = true;
         public bool displayLines = true;
         public bool displayCenterOfRotation = true;
