@@ -59,14 +59,12 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
                 var point = line.Replace('.',',').Split(' ');
                 PointF3D vertex = null;
                 try {
-                    vertex = new PointF3D((float)Convert.ToDouble(point[1]), (float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3]));
-                } catch {
-                    try {
+                    if (point[1] != "") {
+                        vertex = new PointF3D((float)Convert.ToDouble(point[1]), (float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3])); 
+                    } else {
                         vertex = new PointF3D((float)Convert.ToDouble(point[2]), (float)Convert.ToDouble(point[3]), (float)Convert.ToDouble(point[4]));
-                    } catch {
-                        continue;
                     }
-                }
+                } catch { continue; }
 
                 //Translate it
                 vertex += translationToMid;

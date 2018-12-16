@@ -173,8 +173,9 @@ namespace SRP_3D_Projection_on_Keyboard {
                 new PolyLine(0, 1, 3, 2), //Front square
                 new PolyLine(4, 5, 7, 6)  //Back square
             };
-
-            return new Model(modelVertexes, modelLines, modelFaces); //Skab modellen med sine vertexer
+            var m = new Model(modelVertexes, modelLines, modelFaces); //Skab modellen med sine vertexer
+            m.properties.rotateAmount = Math.PI / 64d;
+            return m;
         }
     }
 }
