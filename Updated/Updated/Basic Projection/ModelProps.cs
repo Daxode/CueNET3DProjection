@@ -15,7 +15,5 @@ namespace SRP_3D_Projection_on_Keyboard.Basic_Projection {
         public float wFLineSize = 1;
         public float wFPointSize = 2;
         public double rotateAmount = Math.PI / 8d;
-
-        public ModelProps(){}
     }
 }

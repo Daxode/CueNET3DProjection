@@ -108,6 +108,10 @@ namespace SRP_3D_Projection_on_Keyboard {
                 PointF3D rotation = new PointF3D(0, 0, (float)Math.PI);
                 var model = OBJExtractor.GetModel(Path.GetFullPath(@"Files to try out\deer.obj"), translationToMid, rotation, scale);
                 modelProps.rotateAmount = Math.PI/16d;
+                modelProps.wFLineSize = 1;
+                modelProps.wFPointSize = 2;
+                modelProps.displayPoints = false;
+                modelProps.displayFaces = true;
 
                 return model;
             } else {
@@ -231,6 +235,9 @@ namespace SRP_3D_Projection_on_Keyboard {
             };
             var m = new Model(modelVertexes, modelLines, modelFaces); //Skab modellen med sine vertexer
             modelProps.rotateAmount = Math.PI / 256d;
+            modelProps.wFLineSize = 5;
+            modelProps.wFPointSize = 10;
+            modelProps.displayPoints = true;
             return m;
         }
     }
